@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: user-service
+data-sources:
+  - name: data-base-1
+    strategy: postgres
+    url: jdbc:postgresql://localhost:5432/postgres
+    table: public.users
+    user: postgres
+    password: admin
+    mapping:
+      id: user_id
+      username: login
+      name: first_name
+      surname: last_name
+  - name: data-base-2
+    strategy: postgres
+    url: jdbc:postgresql://localhost:5432/postgres
+    table: user_table
+    user: testuser
+    password: testpass
+    mapping:
+      id: ldap_login
+      username: ldap_login
+      name: name
+      surname: surname
