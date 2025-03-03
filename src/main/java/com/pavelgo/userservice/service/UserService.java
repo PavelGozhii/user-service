@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -18,7 +19,13 @@ public class UserService {
     public List<User> getUsers() {
         return userRepositories.stream()
                 .flatMap(userRepository -> userRepository.findAll().stream())
-                .collect(Collectors.toList());
+                .toList();
     }
 
+    public List<User> getUsers(String id, String username, String name, String surname){
+        return userRepositories.stream()
+                .flatMap(userRepository -> userRepository.findAll(Map.of("id", id,
+                        "username", username, "name", name, "surname", surname)).stream())
+                .toList();
+    }
 }

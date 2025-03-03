@@ -1,6 +1,5 @@
 package com.pavelgo.userservice;
 
-import com.pavelgo.userservice.config.DataSourceDriverClassResolver;
 import com.pavelgo.userservice.config.properties.DataSourcePropertiesToJdbcTemplatePropertiesMapping;
 import com.pavelgo.userservice.config.properties.JdbcTemplateProperties;
 import com.pavelgo.userservice.config.properties.UserDataSourceMapping;
@@ -8,7 +7,6 @@ import com.pavelgo.userservice.model.User;
 import com.pavelgo.userservice.repository.UserRepository;
 import com.pavelgo.userservice.service.UserService;
 import lombok.extern.log4j.Log4j2;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -73,7 +71,7 @@ class UserServiceTests {
         createAndInsertTables(firstJdbcTemplate);
         createAndInsertTables(secondJdbcTemplate);
 
-        UserRepository firstUserRepository = new UserRepository(JdbcTemplateProperties.builder()
+        UserRepository firstUserRepository = new UserRepositoryImpl(JdbcTemplateProperties.builder()
                 .jdbcTemplate(firstJdbcTemplate)
                 .mapping(UserDataSourceMapping.builder()
                         .tableName("public.users")
@@ -84,7 +82,7 @@ class UserServiceTests {
                         .build())
                 .build());
 
-        UserRepository secondUserRepository = new UserRepository(JdbcTemplateProperties.builder()
+        UserRepository secondUserRepository = new UserRepositoryImpl(JdbcTemplateProperties.builder()
                 .jdbcTemplate(secondJdbcTemplate)
                 .mapping(UserDataSourceMapping.builder()
                         .tableName("public.users")

@@ -2,6 +2,7 @@ package com.pavelgo.userservice.config.properties;
 
 import com.pavelgo.userservice.config.DataSourceDriverClassResolver;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Component;
 
@@ -16,8 +17,10 @@ public class DataSourcePropertiesToJdbcTemplatePropertiesMapping {
         dataSource.setUsername(property.getUser());
         dataSource.setPassword(property.getPassword());
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
         return JdbcTemplateProperties.builder()
                 .jdbcTemplate(jdbcTemplate)
+                .namedParameterJdbcTemplate(namedParameterJdbcTemplate)
                 .mapping(UserDataSourceMapping.builder()
                         .id(property.getMapping().getId())
                         .username(property.getMapping().getUsername())
