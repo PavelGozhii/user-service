@@ -15,7 +15,7 @@ public class DataSourceConfig {
     @Bean
     public List<JdbcTemplateProperties> getJdbcTemplates(DataSourceProperties dataSourceProperties,
                                                          DataSourcePropertiesToJdbcTemplatePropertiesMapping dataSourceMapping) {
-        return dataSourceProperties.getDataSources()
+        return dataSourceProperties
                 .stream().map(dataSourceMapping::toJdbcTemplateProperties)
                 .toList();
     }

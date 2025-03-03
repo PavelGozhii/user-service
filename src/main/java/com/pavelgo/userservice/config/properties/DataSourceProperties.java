@@ -4,14 +4,12 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import java.util.ArrayList;
 
 @Data
 @Component
 @ConfigurationProperties("data-sources")
-public class DataSourceProperties {
-
-    private List<DataSource> dataSources;
+public class DataSourceProperties extends ArrayList<DataSourceProperties.DataSource> {
 
     @Data
     public static class DataSource {

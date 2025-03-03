@@ -8,6 +8,7 @@ public class DataSourceDriverClassResolver {
             case "mysql" -> "com.mysql.jdbc.Driver";
             case "postgres" -> "org.postgresql.Driver";
             case "sqlserver" -> "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+            case "h2" -> "org.h2.Driver";
             default -> throw new RuntimeException("Unknown data source strategy: " + name);
         };
     }
